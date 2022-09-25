@@ -1,3 +1,6 @@
+body{
+    overflow: auto;
+}
 .btn-add{
     margin-left: 10%;
 }
@@ -5,4 +8,14 @@
 .btn-delete{
     position: absolute;
     right: 5%;
+}
+#ClassName{
+    width: 20%;
+}
+div.icon{
+
+    display: flex;
+    padding-bottom: 5px;
+    padding-left: 50%;
+    flex-direction: row;
 }

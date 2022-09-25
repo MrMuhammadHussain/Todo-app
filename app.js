@@ -1,4 +1,7 @@
 let api = 'https://frantic-waders-frog.cyclic.app/'
+function ClassName(){
+    // Make it 
+}
 function list() {
     document.querySelector("#addData").innerHTML = ""
     let data = document.querySelector("#addData")
@@ -10,16 +13,14 @@ function list() {
             document.querySelector("#result").innerHTML = ""
             console.log(response.data)
             response.data.data.map(eachTodo => {
-                renderItems(eachTodo)
-
-
+                renderItems(eachTodo)                         
             })
         })
         .catch(function (error) {
             // document.querySelector("#Wdata").innerHTML = error
             console.log(error);
         })
-        data.value = ''
+        data.value = ''        
 }
 function allList() {
     axios.get(`${api}list`)
@@ -38,10 +39,10 @@ function removelist() {
     let code = prompt("Enter Password ")
     if (code === "12345") {
         axios.delete(`${api}remove`)
+        document.querySelector("#addData").value=""
         renderItems()
     } else alert("Worng Password")
 }
-
 function renderItems(item) {
     if (item) {
         let todo = `<ul class="list-group list-group-horizontal rounded-0 bg-transparent">
