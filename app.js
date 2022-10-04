@@ -1,4 +1,4 @@
-let api = 'https://frantic-waders-frog.cyclic.app/'
+let api =  `https://frantic-waders-frog.cyclic.app/`
 function ClassName(){
     // Make it 
 }
@@ -7,14 +7,17 @@ function list() {
     let data = document.querySelector("#addData")
     // console.log(data);
     axios.post(`${api}todo`, {
-        text: data.value
+        text: data.value,
     })
+    allList()
         .then(function (response) {
-            document.querySelector("#result").innerHTML = ""
             console.log(response.data)
-            response.data.data.map(eachTodo => {
-                renderItems(eachTodo)                         
-            })
+            document.querySelector("#result").innerHTML = response.data.data
+            
+        
+            // response.data.data.map(eachTodo => {
+            //     renderItems(eachTodo)                         
+            // })
         })
         .catch(function (error) {
             // document.querySelector("#Wdata").innerHTML = error
@@ -23,12 +26,12 @@ function list() {
         data.value = ''        
 }
 function allList() {
-    axios.get(`${api}list`)
+    axios.get(`${api}todo`)
         .then(function (response) {
-            document.querySelector("#result").innerHTML = ""
             console.log(response.data)
+            document.querySelector("#result").innerHTML = ""
             response.data.data.map(eachTodo => {
-                renderItems(eachTodo)
+                renderItems(eachTodo.text)
             })
         })
         .catch(function (error) {
@@ -38,9 +41,10 @@ function allList() {
 function removelist() {
     let code = prompt("Enter Password ")
     if (code === "12345") {
-        axios.delete(`${api}remove`)
-        document.querySelector("#addData").value=""
-        renderItems()
+        axios.delete(`${api}todo`)
+        allList()
+        // document.querySelector("#addData").value=""
+        // renderItems()
     } else alert("Worng Password")
 }
 function renderItems(item) {
@@ -57,4 +61,4 @@ function renderItems(item) {
 
 }
 allList()
-// setInterval(allList, 5000)
+// setInterval(allList, 3000)
