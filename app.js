@@ -10,7 +10,7 @@ function list() {
         text: data.value,
     })
         .then(function (response) {
-            console.log(response.data)
+            console.log(response.data.data)
             allList()
         })
         .catch(function (error) {
@@ -21,9 +21,10 @@ function list() {
 function allList() {
     axios.get(`${api}todo`)
         .then(function (response) {
-            console.log(response.data)
+            // console.log(response.data)
             document.querySelector("#result").innerHTML = ""
-            response.data.data.map(eachTodo => {
+            response.data.data.reverse().map((eachTodo, index) => {
+                // console.log(eachTodo._id);
                 renderItems(eachTodo.text)
             })
         })
@@ -34,7 +35,7 @@ function allList() {
 function removelist() {
     axios.delete(`${api}todo`).then((res) => {
         console.log(res.data);
-        allList()
+        renderItems()
     })
 }
 function renderItems(item) {
