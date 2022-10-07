@@ -1,5 +1,5 @@
-let api =  `https://frantic-waders-frog.cyclic.app/`
-function ClassName(){
+let api = `https://frantic-waders-frog.cyclic.app/`
+function ClassName() {
     // Make it 
 }
 function list() {
@@ -9,12 +9,10 @@ function list() {
     axios.post(`${api}todo`, {
         text: data.value,
     })
-    allList()
         .then(function (response) {
             console.log(response.data)
-            document.querySelector("#result").innerHTML = response.data.data
-            
-        
+            allList()
+            // document.querySelector("#result").innerHTML += response.data.data
             // response.data.data.map(eachTodo => {
             //     renderItems(eachTodo)                         
             // })
@@ -23,7 +21,7 @@ function list() {
             // document.querySelector("#Wdata").innerHTML = error
             console.log(error);
         })
-        data.value = ''        
+    data.value = ''
 }
 function allList() {
     axios.get(`${api}todo`)
@@ -39,13 +37,18 @@ function allList() {
         })
 }
 function removelist() {
-    let code = prompt("Enter Password ")
-    if (code === "12345") {
-        axios.delete(`${api}todo`)
+    // let code = prompt("Enter Password ")
+    // if (code === "12345") {
+    //     axios.delete(`${api}todo`)
+    //     allList()
+    //     // document.querySelector("#addData").value=""
+    //     // renderItems()
+    // } else alert("Worng Password")
+
+    axios.delete(`${api}todo`).then((res) => {
+        console.log(res.data);
         allList()
-        // document.querySelector("#addData").value=""
-        // renderItems()
-    } else alert("Worng Password")
+    })
 }
 function renderItems(item) {
     if (item) {
@@ -55,7 +58,7 @@ function renderItems(item) {
     </li>
         </ul>`
         document.querySelector("#result").innerHTML += todo
-    }else{
+    } else {
         document.querySelector("#result").innerHTML = ''
     }
 
