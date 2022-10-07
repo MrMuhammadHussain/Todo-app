@@ -12,13 +12,8 @@ function list() {
         .then(function (response) {
             console.log(response.data)
             allList()
-            // document.querySelector("#result").innerHTML += response.data.data
-            // response.data.data.map(eachTodo => {
-            //     renderItems(eachTodo)                         
-            // })
         })
         .catch(function (error) {
-            // document.querySelector("#Wdata").innerHTML = error
             console.log(error);
         })
     data.value = ''
@@ -37,14 +32,6 @@ function allList() {
         })
 }
 function removelist() {
-    // let code = prompt("Enter Password ")
-    // if (code === "12345") {
-    //     axios.delete(`${api}todo`)
-    //     allList()
-    //     // document.querySelector("#addData").value=""
-    //     // renderItems()
-    // } else alert("Worng Password")
-
     axios.delete(`${api}todo`).then((res) => {
         console.log(res.data);
         allList()
